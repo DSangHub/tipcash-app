@@ -10,19 +10,20 @@
 </head>
 <body>
   <header class="wrap nav">
-    <a class="brand" href="../index.html"><span class="mark">T</span>TipCash</a>
+    <a class="brand" href="../index.html"><img class="brand-logo" src="../logo-mark.svg" alt="TipCash" /><span>TipCash</span></a>
     <nav class="nav-links">
       <a href="../index.html">For owners</a>
       <a href="../guest/">Guest</a>
       <a href="../server/">Server</a>
       <a class="active" href="./">House</a>
+      <a href="../flyer/">Flyer</a>
     </nav>
   </header>
   <main class="wrap" style="padding-bottom:48px">
     <p class="kicker">Owner · Oak & Vine</p>
     <h1>Do you allow TipCash to pay your servers?</h1>
     <p class="lede">Yes keeps the guest. House jar keeps the team whole. Not now still shows you how many regulars asked.</p>
-    <div class="toggle">
+    <div class="toggle" id="payToggle">
       <button class="btn on" data-p="servers">Allow servers</button>
       <button class="btn" data-p="pool">House jar only</button>
       <button class="btn" data-p="off">Not now</button>
@@ -52,6 +53,19 @@
         <p class="muted">No public shame list. You see demand. They see houses that already said yes.</p>
       </section>
     </div>
+    <section class="card" style="margin-top:14px">
+      <div class="who">Book a server</div>
+      <h2>A table is convenient. Excellent service books the person.</h2>
+      <p class="muted">You keep the reservation book. Guests may request a named server. House can decline.</p>
+      <div class="toggle">
+        <button class="btn on" id="srvBookOn">Allow named-server books</button>
+        <button class="btn" id="srvBookOff">Tables only</button>
+      </div>
+      <p class="ok" id="srvBookCopy">Allowed with rules: 2 days’ notice, party of 2+, not guaranteed on busy hours or weekends.</p>
+      <div class="row"><span>Named-server asks this month</span><b>6</b></div>
+      <div class="row"><span>Accepted weeknights</span><b>4</b></div>
+      <div class="row"><span>Declined weekend / rush</span><b>2</b></div>
+    </section>
   </main>
   <script>
     const text = {
@@ -59,9 +73,9 @@
       pool: ["ok", "Every TipCash tip lands in the house jar and splits your way."],
       off: ["warn", "No TipCash payouts. Member asks still collect so you can see demand."],
     };
-    document.querySelectorAll(".toggle .btn").forEach((btn) => {
+    document.querySelectorAll("#payToggle .btn").forEach((btn) => {
       btn.onclick = () => {
-        document.querySelectorAll(".toggle .btn").forEach((b) => b.classList.remove("on"));
+        document.querySelectorAll("#payToggle .btn").forEach((b) => b.classList.remove("on"));
         btn.classList.add("on");
         const [cls, msg] = text[btn.dataset.p];
         const el = document.getElementById("copy");
@@ -69,6 +83,19 @@
         el.textContent = msg;
       };
     });
+    const srvOn = document.getElementById("srvBookOn");
+    const srvOff = document.getElementById("srvBookOff");
+    const srvCopy = document.getElementById("srvBookCopy");
+    srvOn.onclick = () => {
+      srvOn.classList.add("on"); srvOff.classList.remove("on");
+      srvCopy.className = "ok";
+      srvCopy.textContent = "Allowed with rules: 2 days’ notice, party of 2+, not guaranteed on busy hours or weekends.";
+    };
+    srvOff.onclick = () => {
+      srvOff.classList.add("on"); srvOn.classList.remove("on");
+      srvCopy.className = "warn";
+      srvCopy.textContent = "Tables only. Guests still see who served them and can tip. They cannot reserve a named server.";
+    };
   </script>
 </body>
 </html>

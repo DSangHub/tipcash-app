@@ -50,6 +50,11 @@ p { color: var(--ink-soft); line-height: 1.55; }
 .phone-body { padding: 14px; display: grid; gap: 10px; }
 .chip { background: var(--paper-2); border-radius: 12px; padding: 10px 12px; }
 .trio, .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 16px 0 28px; }
+.quartet { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 16px 0 28px; }
+.rules { margin: 10px 0 0; padding: 0; list-style: none; }
+.rules li { font-size: 14px; color: var(--ink-soft); padding: 6px 0; border-bottom: 1px solid var(--line); }
+.rules li:last-child { border-bottom: 0; }
+.rules b { color: var(--ink); }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 18px; }
 .who { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--copper); }
@@ -76,7 +81,7 @@ p { color: var(--ink-soft); line-height: 1.55; }
 }
 .footer { padding: 28px 0 40px; color: var(--ink-soft); font-size: 13px; }
 @media (max-width: 800px) {
-  .hero, .trio, .stats, .grid-2 { grid-template-columns: 1fr; }
+  .hero, .trio, .quartet, .stats, .grid-2 { grid-template-columns: 1fr; }
   .tips { grid-template-columns: repeat(2, 1fr); }
 }
 

@@ -10,12 +10,13 @@
 </head>
 <body>
   <header class="wrap nav">
-    <a class="brand" href="../index.html"><span class="mark">T</span>TipCash</a>
+    <a class="brand" href="../index.html"><img class="brand-logo" src="../logo-mark.svg" alt="TipCash" /><span>TipCash</span></a>
     <nav class="nav-links">
       <a href="../index.html">For owners</a>
       <a href="../guest/">Guest</a>
       <a class="active" href="./">Server</a>
       <a href="../owner/">House</a>
+      <a href="../flyer/">Flyer</a>
     </nav>
   </header>
   <main class="wrap" style="padding-bottom:48px">
@@ -45,6 +46,18 @@
         <textarea id="faq" class="field" rows="3">Ask me about the $14 pasta and anything sparkling.</textarea>
       </section>
     </div>
+    <section class="card" style="margin-top:14px">
+      <div class="who">Book a server</div>
+      <h2>Guests book the table. Regulars book you.</h2>
+      <p class="muted">2 days’ notice · party of 2+ · you or the house can decline busy hours and weekends.</p>
+      <div class="row"><span><b>Thu 7:30 · party of 2</b><div class="muted">M.S. — asked for Alex after Friday’s patio.</div></span><span class="ok">Hold</span></div>
+      <div class="row"><span><b>Sat 6:00 · party of 4</b><div class="muted">Weekend — may not be available.</div></span><span class="warn">House review</span></div>
+      <div class="toggle">
+        <button class="btn on" id="bookOn">Open for bookings</button>
+        <button class="btn" id="bookOff">Busy / weekend — pause</button>
+      </div>
+      <p class="muted" id="bookPolicy">Guests can request Alex 2 days out. Floor still wins if the room is slammed.</p>
+    </section>
   </main>
   <script>
     const on = document.getElementById("on");
@@ -57,6 +70,17 @@
     off.onclick = () => {
       off.classList.add("on"); on.classList.remove("on");
       policy.textContent = "Personal QR is quiet. Guests can still fund the house jar.";
+    };
+    const bookOn = document.getElementById("bookOn");
+    const bookOff = document.getElementById("bookOff");
+    const bookPolicy = document.getElementById("bookPolicy");
+    bookOn.onclick = () => {
+      bookOn.classList.add("on"); bookOff.classList.remove("on");
+      bookPolicy.textContent = "Guests can request Alex 2 days out. Floor still wins if the room is slammed.";
+    };
+    bookOff.onclick = () => {
+      bookOff.classList.add("on"); bookOn.classList.remove("on");
+      bookPolicy.textContent = "Bookings paused for busy hours and weekends. Walk-ins still get a table.";
     };
   </script>
 </body>

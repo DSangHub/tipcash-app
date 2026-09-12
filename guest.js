@@ -4,7 +4,7 @@ const menu = [
   { id: "olives", name: "Warm olives + bread", note: "Shareable", price: 9 },
 ];
 
-const state = { step: "menu", picked: [], tip: 12, custom: "", member: false };
+const state = { step: "menu", picked: [], tip: 12, custom: "", member: false, book: null };
 
 function addon() {
   return menu.filter((i) => state.picked.includes(i.id)).reduce((s, i) => s + i.price, 0);
@@ -76,15 +76,53 @@ function render() {
           ? `<div class="card" style="background:#eaf3ee"><b>Member saved.</b><p class="muted">Next house that has not allowed TipCash can be asked once: “Do you allow TipCash to pay your servers?”</p></div>`
           : `<button class="btn btn-solid btn-lg" id="join">Save as a TipCash member</button>`
       }
+      ${
+        state.book
+          ? `<div class="card" style="margin-top:12px;background:#eaf3ee" id="book"><b>Request sent to book Alex.</b><p class="muted">${state.book.party} guests · ${state.book.when}. 2 days’ notice. Not guaranteed on busy hours or weekends.</p></div>`
+          : `<div class="card" style="margin-top:12px" id="book">
+              <div class="who">Next visit</div>
+              <h2>Book a table is convenient. For excellent service, book a server.</h2>
+              <p class="muted">Ask for Alex again. The house can still say no if the floor is slammed.</p>
+              <label class="muted" for="when">Night (2 days out or later)</label>
+              <input class="field" id="when" type="date" />
+              <label class="muted" for="party">Party size</label>
+              <select class="field" id="party">
+                <option value="1">1 — too small</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+              </select>
+              <button class="btn btn-copper btn-lg" id="bookBtn">Request Alex</button>
+              <p class="muted" id="bookErr"></p>
+            </div>`
+      }
       <button class="btn" style="margin-top:10px" id="reset">Reset demo</button>`;
     const join = document.getElementById("join");
     if (join) join.onclick = () => { state.member = true; render(); };
+    const bookBtn = document.getElementById("bookBtn");
+    if (bookBtn) bookBtn.onclick = () => {
+      const party = Number(document.getElementById("party").value);
+      const when = document.getElementById("when").value;
+      const err = document.getElementById("bookErr");
+      const min = new Date();
+      min.setDate(min.getDate() + 2);
+      min.setHours(0,0,0,0);
+      if (!when) { err.textContent = "Pick a night at least 2 days out."; return; }
+      if (new Date(when + "T12:00:00") < min) { err.textContent = "2 days’ notice required."; return; }
+      if (party < 2) { err.textContent = "Minimum party of 2."; return; }
+      const day = new Date(when + "T12:00:00").getDay();
+      const weekend = day === 0 || day === 6;
+      state.book = { party, when, note: weekend ? "Weekend request — house may decline." : "Weeknight request." };
+      render();
+    };
     document.getElementById("reset").onclick = () => {
       state.step = "menu";
       state.picked = [];
       state.tip = 12;
       state.custom = "";
       state.member = false;
+      state.book = null;
       render();
     };
   }
