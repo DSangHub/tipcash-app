@@ -1,18 +1,23 @@
-# TipCash
+# TipCash prototype
 
-Public prototype: guest + server product aimed at the restaurant owner.
+Guest + server product aimed at the restaurant owner.
 
-https://github.com/DSangHub/tipcash-app
+- Guest is happy: scan, short menu, tip, 5-day / 5–8% / $25 offer, optional membership.
+- Server is happy: digital cash to their account, pause on pool nights, FAQ, tax export.
+- Owner wins: keep the check, pick Allow / House jar / Not now, sell a dessert tonight and a cover next week.
 
-- Landing page uses the copper-gold open jar logo
-- Server flyer: `/flyer/` — Join TipCash for faster, easier tips. **Keep Smiling and Serving.**
-- Guest / server / owner flows as before
+## Pages
 
-## Run
+- `/` owner pitch (copper-gold jar logo on the landing page)
+- `/guest/` customer scan flow
+- `/server/` server home
+- `/owner/` house controls + repeat-visit math
+- `/flyer/` server flyer — Keep Smiling and Serving
+
+## Run locally
 
 ```bash
-git clone https://github.com/DSangHub/tipcash-app.git
-cd tipcash-app
+cd /home/workdir/artifacts/tipcash
 python3 -m http.server 3000
 ```
 
