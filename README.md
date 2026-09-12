@@ -14,6 +14,7 @@ Guest + server product aimed at the restaurant owner.
 - `/server/` server home
 - `/owner/` house controls + repeat-visit math
 - `/flyer/` server flyer — Keep Smiling and Serving
+- `/flyer/owner.html` owner / GM flyer + join email
 
 ## Run locally
 

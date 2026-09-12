@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TipCash — Owner / GM intro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .sheet {
+      width: min(720px, 100%);
+      background: #f6efe4;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(28,23,18,.12);
+      overflow: hidden;
+    }
+    .sheet-body { padding: 40px 40px 28px; text-align: center; }
+    .sheet-body .logo { width: 160px; height: auto; margin: 0 auto 6px; display: block; }
+    .sheet-word { font-family: Fraunces, serif; font-size: 40px; color: #1c1712; margin: 0 0 18px; }
+    .sheet-title { font-family: Fraunces, serif; font-size: clamp(36px, 7vw, 56px); line-height: .95; margin: 0 0 10px; color: #1c1712; }
+    .sheet-sub { font-family: Fraunces, serif; font-size: clamp(22px, 4vw, 30px); color: #b45a28; margin: 0 0 18px; }
+    .sheet-rule { width: 72px; height: 2px; background: #d7a441; margin: 0 auto 22px; border: 0; }
+    .benefits { text-align: left; max-width: 520px; margin: 0 auto 8px; padding: 0; list-style: none; }
+    .benefits li {
+      color: #1c1712;
+      font-size: 18px;
+      padding: 10px 0;
+      border-bottom: 1px solid #e4d8c4;
+    }
+    .benefits li:last-child { border-bottom: 0; }
+    .benefits b { display: block; font-family: Fraunces, serif; font-size: 20px; margin-bottom: 2px; }
+    .sheet-slogan { font-weight: 800; font-size: clamp(22px, 4vw, 30px); letter-spacing: -.02em; margin: 22px 0 6px !important; }
+    .sheet-foot {
+      background: #1f4a3a;
+      color: #f6efe4;
+      padding: 16px 20px;
+      text-align: center;
+      font-size: 15px;
+    }
+    .email {
+      width: min(720px, 100%);
+      margin-top: 28px;
+      background: #fffaf2;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 28px 20px;
+    }
+    .email h2 { margin-top: 0; }
+    .email pre {
+      white-space: pre-wrap;
+      font-family: Outfit, system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #1c1712;
+      background: #f6efe4;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 0 0 12px;
+    }
+    @media print {
+      header, .no-print { display: none !important; }
+      body { background: #fff; }
+      .sheet { box-shadow: none; border: 0; border-radius: 0; width: 100%; }
+      .email { break-before: page; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap nav no-print">
+    <a class="brand" href="../index.html"><img class="brand-logo" src="../logo-photo.svg" alt="TipCash" onerror="this.onerror=null;this.src='../logo-mark.svg'" /></a>
+    <nav class="nav-links">
+      <a href="../index.html">For owners</a>
+      <a href="../guest/">Guest</a>
+      <a href="../server/">Server</a>
+      <a href="../owner/">House</a>
+      <a class="active" href="./">Flyer</a>
+    </nav>
+  </header>
+  <main class="wrap" style="padding-bottom:48px">
+    <p class="kicker no-print">For owners and GMs</p>
+    <h1 class="no-print">Join TipCash.</h1>
+    <p class="lede no-print">Print the flyer. Paste the email. You keep the floor rules.</p>
+    <p class="no-print" style="margin:0 0 18px">
+      <a class="btn" href="./">Server flyer</a>
+      <a class="btn btn-solid" href="./owner.html">Owner / GM</a>
+    </p>
+
+    <article class="sheet" aria-label="TipCash owner and GM flyer">
+      <div class="sheet-body">
+        <img class="logo" src="../logo-photo.svg" alt="TipCash copper-gold jar" onerror="this.onerror=null;this.src='../logo-mark.svg'" />
+        <div class="sheet-word">TipCash</div>
+        <h2 class="sheet-title">Join TipCash</h2>
+        <p class="sheet-sub">Happy servers. Happy customers will return for more.</p>
+        <hr class="sheet-rule" />
+        <ul class="benefits">
+          <li><b>You control the clock.</b> Set the hours TipCash is allowed on your floor.</li>
+          <li><b>Switch to pool tips any time.</b> Direct pay or house jar — flip it when the night changes.</li>
+          <li><b>A new medium to show your menu.</b> The QR is a last-look card, not another POS.</li>
+          <li><b>Add specials — even regular-price slow movers.</b> Move the plate that is sitting.</li>
+          <li><b>Better Yelp and Google ratings.</b> Guests leave happier when the person who served them is paid and they can come back.</li>
+        </ul>
+        <p class="sheet-slogan">Join TipCash.</p>
+      </div>
+      <div class="sheet-foot">For owners and GMs · You keep the check · tipcash.app</div>
+    </article>
+
+    <section class="email no-print" aria-label="Owner email">
+      <h2>Email to owners / GMs</h2>
+      <p class="muted">Subject: Join TipCash — happy servers, guests who come back</p>
+      <pre id="mail">Subject: Join TipCash — happy servers, guests who come back
+
+TipCash
+Join TipCash.
+
+Happy servers. Happy customers will return for more.
+
+You keep the house rules:
+
+• Control the time TipCash is allowed.
+• Switch to pool tips any time.
+• A new medium to show your menu.
+• Add specials — even regular-price slow movers.
+• Get better Yelp / Google ratings.
+
+Booking a table is convenient. For excellent service, book a server
+(2 days’ notice, party of 2+, may be closed on busy hours and weekends).
+
+You keep the check. Servers get paid. Guests have a reason to sit down again.
+
+Join TipCash.
+tipcash.app</pre>
+      <button class="btn btn-solid" type="button" id="copyMail">Copy email</button>
+      <span class="muted" id="copied"></span>
+    </section>
+  </main>
+  <script>
+    document.getElementById("copyMail").onclick = async () => {
+      const text = document.getElementById("mail").textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById("copied").textContent = "Copied.";
+      } catch {
+        document.getElementById("copied").textContent = "Select the text and copy.";
+      }
+    };
+  </script>
+</body>
+</html>
