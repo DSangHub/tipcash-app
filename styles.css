@@ -79,3 +79,5 @@ p { color: var(--ink-soft); line-height: 1.55; }
   .hero, .trio, .stats, .grid-2 { grid-template-columns: 1fr; }
   .tips { grid-template-columns: repeat(2, 1fr); }
 }
+.brand-logo { height: 42px; width: auto; display: block; }
+.hero-logo { width: min(280px, 70%); height: auto; display: block; margin: 0 0 18px; }

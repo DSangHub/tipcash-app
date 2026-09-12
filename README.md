@@ -4,16 +4,9 @@ Public prototype: guest + server product aimed at the restaurant owner.
 
 https://github.com/DSangHub/tipcash-app
 
-- Guest: scan, short menu, tip, 5-day / 5–8% / $25 offer, optional membership
-- Server: digital cash tips, pause on pool nights, FAQ
-- Owner: Allow servers / House jar / Not now + repeat-visit math
-
-## Pages
-
-- `/` owner pitch
-- `/guest/` customer scan flow
-- `/server/` server home
-- `/owner/` house dashboard
+- Landing page uses the copper-gold open jar logo
+- Server flyer: `/flyer/` — Join TipCash for faster, easier tips. **Keep Smiling and Serving.**
+- Guest / server / owner flows as before
 
 ## Run
 
