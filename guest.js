@@ -4,7 +4,16 @@ const menu = [
   { id: "olives", name: "Warm olives + bread", note: "Shareable", price: 9 },
 ];
 
-const state = { step: "menu", picked: [], tip: 12, custom: "", member: false, book: null };
+const state = {
+  step: "pay",
+  picked: [],
+  tip: 12,
+  custom: "",
+  method: "apple",
+  member: false,
+  book: null,
+  showMenu: false,
+};
 
 function addon() {
   return menu.filter((i) => state.picked.includes(i.id)).reduce((s, i) => s + i.price, 0);
@@ -15,22 +24,64 @@ function tipAmt() {
 function offerPct() {
   return tipAmt() >= 10 || state.picked.length ? 8 : 5;
 }
+function methodLabel() {
+  return { apple: "Apple Pay", venmo: "Venmo", card: "Card" }[state.method];
+}
 
 function render() {
   const root = document.getElementById("flow");
-  if (state.step === "menu") {
+  if (state.step === "pay") {
     root.innerHTML = `
-      <div class="who">Alex · Patio</div>
-      <h2>Still available tonight</h2>
-      <p class="muted">Limited on purpose. The house 86s anything the kitchen cannot fire.</p>
-      <div class="list">${menu
-        .map(
-          (i) => `<button class="menu-item ${state.picked.includes(i.id) ? "on" : ""}" data-id="${i.id}">
-            <span><b>${i.name}</b><div class="muted">${i.note}</div></span>$${i.price}
-          </button>`
-        )
+      <div class="who">Alex · Patio · 8 seconds</div>
+      <h2>Tip Alex. One tap.</h2>
+      <p class="muted">No app to download. House check stays on the official bill.</p>
+      <div class="tips">${[5, 8, 12, 20]
+        .map((n) => `<button class="tip-btn ${!state.custom && state.tip === n ? "on" : ""}" data-n="${n}">$${n}</button>`)
         .join("")}</div>
-      <button class="btn btn-solid btn-lg" style="margin-top:14px" id="toTip">Continue to tip Alex</button>`;
+      <input class="field" id="custom" inputmode="decimal" placeholder="Other amount" value="${state.custom}" />
+      <p class="muted">Tip $${tipAmt()}${addon() ? " · extras $" + addon() : ""} · guest covers the small processing fee</p>
+      <div class="who" style="margin-top:12px">Pay how you already pay</div>
+      <div class="pay-methods">
+        <button class="tip-btn ${state.method === "apple" ? "on" : ""}" data-m="apple">Apple Pay</button>
+        <button class="tip-btn ${state.method === "venmo" ? "on" : ""}" data-m="venmo">Venmo</button>
+        <button class="tip-btn ${state.method === "card" ? "on" : ""}" data-m="card">Card</button>
+      </div>
+      <button class="btn btn-copper btn-lg" style="margin-top:14px;width:100%" id="pay">Send $${tipAmt()} · ${methodLabel()}</button>
+      <button class="btn" style="margin-top:8px;width:100%" id="toggleMenu">${state.showMenu ? "Hide extras" : "Add a last plate (optional)"}</button>
+      ${
+        state.showMenu
+          ? `<div class="list" style="margin-top:10px">${menu
+              .map(
+                (i) => `<button class="menu-item ${state.picked.includes(i.id) ? "on" : ""}" data-id="${i.id}">
+                  <span><b>${i.name}</b><div class="muted">${i.note}</div></span>$${i.price}
+                </button>`
+              )
+              .join("")}</div>`
+          : ""
+      }`;
+    root.querySelectorAll(".tip-btn[data-n]").forEach((btn) => {
+      btn.onclick = () => {
+        state.tip = Number(btn.dataset.n);
+        state.custom = "";
+        render();
+      };
+    });
+    root.querySelectorAll(".tip-btn[data-m]").forEach((btn) => {
+      btn.onclick = () => {
+        state.method = btn.dataset.m;
+        render();
+      };
+    });
+    document.getElementById("custom").oninput = (e) => {
+      state.custom = e.target.value;
+      paintAside();
+      const pay = document.getElementById("pay");
+      pay.textContent = "Send $" + tipAmt() + " · " + methodLabel();
+    };
+    document.getElementById("toggleMenu").onclick = () => {
+      state.showMenu = !state.showMenu;
+      render();
+    };
     root.querySelectorAll(".menu-item").forEach((btn) => {
       btn.onclick = () => {
         const id = btn.dataset.id;
@@ -38,39 +89,15 @@ function render() {
         render();
       };
     });
-    document.getElementById("toTip").onclick = () => {
-      state.step = "tip";
-      render();
-    };
-  } else if (state.step === "tip") {
-    root.innerHTML = `
-      <div class="who">Direct to the server</div>
-      <h2>How should they be thanked?</h2>
-      <div class="tips">${[5, 8, 12, 20]
-        .map((n) => `<button class="tip-btn ${!state.custom && state.tip === n ? "on" : ""}" data-n="${n}">$${n}</button>`)
-        .join("")}</div>
-      <input class="field" id="custom" placeholder="Custom amount" value="${state.custom}" />
-      <p class="muted">Add-ons $${addon()} · Tip $${tipAmt()} · Guest pays processing on the tip</p>
-      <button class="btn btn-copper btn-lg" id="pay">Pay · Apple Pay</button>`;
-    root.querySelectorAll(".tip-btn").forEach((btn) => {
-      btn.onclick = () => {
-        state.tip = Number(btn.dataset.n);
-        state.custom = "";
-        render();
-      };
-    });
-    document.getElementById("custom").oninput = (e) => {
-      state.custom = e.target.value;
-      paintAside();
-    };
     document.getElementById("pay").onclick = () => {
+      if (tipAmt() <= 0 && addon() <= 0) return;
       state.step = "done";
       render();
     };
   } else {
     root.innerHTML = `
-      <div class="banner"><small>You’re in</small><strong>${offerPct()}% off your next visit</strong>Use by Tuesday · min $25 · code ALEX-8F2</div>
-      <p>Alex gets the tip. The house gets a guest who already plans to come back.</p>
+      <div class="banner"><small>Paid in one tap · ${methodLabel()}</small><strong>$${tipAmt()} to Alex</strong>${addon() ? "Plus extras $" + addon() + ". " : ""}${offerPct()}% off your next visit · use by Tuesday · min $25 · code ALEX-8F2</div>
+      <p>Alex is paid. You did not open an app or wait on a check presenter.</p>
       ${
         state.member
           ? `<div class="card" style="background:#eaf3ee"><b>Member saved.</b><p class="muted">Next house that has not allowed TipCash can be asked once: “Do you allow TipCash to pay your servers?”</p></div>`
@@ -107,7 +134,7 @@ function render() {
       const err = document.getElementById("bookErr");
       const min = new Date();
       min.setDate(min.getDate() + 2);
-      min.setHours(0,0,0,0);
+      min.setHours(0, 0, 0, 0);
       if (!when) { err.textContent = "Pick a night at least 2 days out."; return; }
       if (new Date(when + "T12:00:00") < min) { err.textContent = "2 days’ notice required."; return; }
       if (party < 2) { err.textContent = "Minimum party of 2."; return; }
@@ -117,12 +144,14 @@ function render() {
       render();
     };
     document.getElementById("reset").onclick = () => {
-      state.step = "menu";
+      state.step = "pay";
       state.picked = [];
       state.tip = 12;
       state.custom = "";
+      state.method = "apple";
       state.member = false;
       state.book = null;
+      state.showMenu = false;
       render();
     };
   }
@@ -133,6 +162,8 @@ function paintAside() {
   document.getElementById("addon").textContent = "$" + addon();
   document.getElementById("take").textContent = "$" + tipAmt();
   document.getElementById("offer").textContent = offerPct() + "% / 5 days";
+  const method = document.getElementById("methodOut");
+  if (method) method.textContent = methodLabel();
 }
 
 render();
