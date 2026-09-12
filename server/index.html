@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TipCash — Server</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="../index.html"><span class="mark">T</span>TipCash</a>
+    <nav class="nav-links">
+      <a href="../index.html">For owners</a>
+      <a href="../guest/">Guest</a>
+      <a class="active" href="./">Server</a>
+      <a href="../owner/">House</a>
+    </nav>
+  </header>
+  <main class="wrap" style="padding-bottom:48px">
+    <p class="kicker">Server · still under the house</p>
+    <h1>Get paid. Stay on the team.</h1>
+    <p class="lede">Alex keeps digital cash tips without fighting the floor. If you choose pool-only, this QR feeds the jar. If you allow servers, it lands here.</p>
+    <div class="grid-2" style="margin-top:22px">
+      <section class="card">
+        <div class="who">Tonight</div>
+        <div class="stat"><b>$55</b><span class="muted">4 TipCash guests · Patio</span></div>
+        <div class="row"><span>Table 9</span><span>$12 · Apple Pay</span></div>
+        <div class="row"><span>Table 12</span><span>$8 · Card</span></div>
+        <div class="row"><span>Table 4</span><span>$20 · Apple Pay</span></div>
+        <div class="row"><span>Patio</span><span>$15 · Venmo</span></div>
+        <p class="muted">Export for the house and for the federal tip deduction. No off-book story.</p>
+      </section>
+      <section class="card">
+        <div class="who">Table QR</div>
+        <h2>tipcash.app/s/alex</h2>
+        <div class="qr" aria-hidden="true"></div>
+        <div class="toggle">
+          <button class="btn on" id="on">Accepting tips</button>
+          <button class="btn" id="off">Pool night — pause me</button>
+        </div>
+        <p class="muted" id="policy">Guests can tip Alex directly. House tip-out still applies if you set it.</p>
+        <label class="muted" for="faq">Voluntary FAQ for the next guest</label>
+        <textarea id="faq" class="field" rows="3">Ask me about the $14 pasta and anything sparkling.</textarea>
+      </section>
+    </div>
+  </main>
+  <script>
+    const on = document.getElementById("on");
+    const off = document.getElementById("off");
+    const policy = document.getElementById("policy");
+    on.onclick = () => {
+      on.classList.add("on"); off.classList.remove("on");
+      policy.textContent = "Guests can tip Alex directly. House tip-out still applies if you set it.";
+    };
+    off.onclick = () => {
+      off.classList.add("on"); on.classList.remove("on");
+      policy.textContent = "Personal QR is quiet. Guests can still fund the house jar.";
+    };
+  </script>
+</body>
+</html>

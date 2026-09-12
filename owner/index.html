@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TipCash — House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="../index.html"><span class="mark">T</span>TipCash</a>
+    <nav class="nav-links">
+      <a href="../index.html">For owners</a>
+      <a href="../guest/">Guest</a>
+      <a href="../server/">Server</a>
+      <a class="active" href="./">House</a>
+    </nav>
+  </header>
+  <main class="wrap" style="padding-bottom:48px">
+    <p class="kicker">Owner · Oak & Vine</p>
+    <h1>Do you allow TipCash to pay your servers?</h1>
+    <p class="lede">Yes keeps the guest. House jar keeps the team whole. Not now still shows you how many regulars asked.</p>
+    <div class="toggle">
+      <button class="btn on" data-p="servers">Allow servers</button>
+      <button class="btn" data-p="pool">House jar only</button>
+      <button class="btn" data-p="off">Not now</button>
+    </div>
+    <p class="ok" id="copy">Guests tip the person who served them. You keep tip-out rules.</p>
+    <div class="stats">
+      <div class="stat"><b>41</b>scans this week</div>
+      <div class="stat"><b>$248</b>to staff via TipCash</div>
+      <div class="stat"><b>$94</b>from 5-day return visits</div>
+    </div>
+    <div class="grid-2">
+      <section class="card">
+        <div class="who">Repeat machine</div>
+        <h2>Tonight sold the next visit.</h2>
+        <div class="row"><span>Limited-menu add-ons</span><b>7 · $126</b></div>
+        <div class="row"><span>5-day offers issued</span><b>11</b></div>
+        <div class="row"><span>Redeemed in window</span><b>3</b></div>
+        <div class="row"><span>Return sales</span><b>$94</b></div>
+        <p class="muted">5% or 8% off, five days, $25 minimum. The house funds the discount. The server is not taxed by your promo.</p>
+      </section>
+      <section class="card">
+        <div class="who">Members in the room</div>
+        <h2>8 asks in 30 days</h2>
+        <div class="row"><span><b>M.S.</b> · T12 · Fri 8:14 PM<div class="muted">Wants to tip the person who served them.</div></span></div>
+        <div class="row"><span><b>J.R.</b> · T4 · Fri 7:02 PM<div class="muted">Regular. Asked last week too.</div></span></div>
+        <div class="row"><span><b>A.K.</b> · Bar · Thu 6:40 PM<div class="muted">Came back with a 5-day offer from another house.</div></span></div>
+        <p class="muted">No public shame list. You see demand. They see houses that already said yes.</p>
+      </section>
+    </div>
+  </main>
+  <script>
+    const text = {
+      servers: ["ok", "Guests tip the person who served them. You keep tip-out rules."],
+      pool: ["ok", "Every TipCash tip lands in the house jar and splits your way."],
+      off: ["warn", "No TipCash payouts. Member asks still collect so you can see demand."],
+    };
+    document.querySelectorAll(".toggle .btn").forEach((btn) => {
+      btn.onclick = () => {
+        document.querySelectorAll(".toggle .btn").forEach((b) => b.classList.remove("on"));
+        btn.classList.add("on");
+        const [cls, msg] = text[btn.dataset.p];
+        const el = document.getElementById("copy");
+        el.className = cls;
+        el.textContent = msg;
+      };
+    });
+  </script>
+</body>
+</html>
