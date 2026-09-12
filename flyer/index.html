@@ -7,10 +7,43 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .sheet {
+      width: min(720px, 100%);
+      background: #f6efe4;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(28,23,18,.12);
+      overflow: hidden;
+    }
+    .sheet-body {
+      padding: 48px 40px 36px;
+      text-align: center;
+    }
+    .sheet-body img { width: 150px; height: auto; margin: 0 auto 8px; display: block; }
+    .sheet-word { font-family: Fraunces, serif; font-size: 42px; color: #1c1712; margin: 0 0 28px; }
+    .sheet-title { font-family: Fraunces, serif; font-size: clamp(40px, 8vw, 64px); line-height: .95; margin: 0 0 12px; color: #1c1712; }
+    .sheet-sub { font-family: Fraunces, serif; font-size: clamp(26px, 5vw, 36px); color: #b45a28; margin: 0 0 22px; }
+    .sheet-rule { width: 72px; height: 2px; background: #d7a441; margin: 0 auto 28px; border: 0; }
+    .sheet-body p { color: #1c1712; font-size: 20px; margin: 0 0 18px; }
+    .sheet-slogan { font-weight: 800; font-size: clamp(24px, 4vw, 32px); letter-spacing: -.02em; margin: 28px 0 8px !important; }
+    .sheet-foot {
+      background: #1f4a3a;
+      color: #f6efe4;
+      padding: 16px 20px;
+      text-align: center;
+      font-size: 15px;
+    }
+    @media print {
+      header, .no-print { display: none !important; }
+      body { background: #fff; }
+      .sheet { box-shadow: none; border: 0; border-radius: 0; width: 100%; }
+    }
+  </style>
 </head>
 <body>
-  <header class="wrap nav">
-    <a class="brand" href="../index.html"><img class="brand-logo" src="../logo-photo.svg" alt="TipCash" /></a>
+  <header class="wrap nav no-print">
+    <a class="brand" href="../index.html"><img class="brand-logo" src="../logo-photo.svg" alt="TipCash" onerror="this.onerror=null;this.src='../logo-mark.svg'" /></a>
     <nav class="nav-links">
       <a href="../index.html">For owners</a>
       <a href="../guest/">Guest</a>
@@ -20,10 +53,22 @@
     </nav>
   </header>
   <main class="wrap" style="padding-bottom:48px">
-    <p class="kicker">For servers</p>
-    <h1>Keep Smiling and Serving.</h1>
-    <p class="lede">Print this flyer. Hand it to the floor. Free to join.</p>
-    <img src="./flyer-art.svg" alt="TipCash server flyer" style="width:min(720px,100%);border-radius:16px;border:1px solid var(--line);box-shadow:0 18px 40px rgba(28,23,18,.12)" />
+    <p class="kicker no-print">For servers</p>
+    <h1 class="no-print">Keep Smiling and Serving.</h1>
+    <p class="lede no-print">Print this flyer. Hand it to the floor. Free to join.</p>
+    <article class="sheet" aria-label="TipCash server flyer">
+      <div class="sheet-body">
+        <img src="../logo-mark.svg" alt="TipCash copper-gold jar" />
+        <div class="sheet-word">TipCash</div>
+        <h2 class="sheet-title">Join TipCash</h2>
+        <p class="sheet-sub">Faster, easier tips.</p>
+        <hr class="sheet-rule" />
+        <p>Get ratings on your service.</p>
+        <p>Keep your customers happy and returning<br />because of your excellent service.</p>
+        <p class="sheet-slogan">Keep Smiling and Serving.</p>
+      </div>
+      <div class="sheet-foot">Free for servers · tipcash.app · Ask your house to allow TipCash</div>
+    </article>
   </main>
 </body>
 </html>
