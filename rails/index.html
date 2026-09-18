@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TipCash — Tip → money app</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="../index.html"><img class="brand-logo" src="../logo-mark.svg" alt="TipCash" /><span>TipCash</span></a>
+    <nav class="nav-links">
+      <a href="../index.html">For owners</a>
+      <a href="../guest/">Guest</a>
+      <a href="../server/">Server</a>
+      <a href="../owner/">House</a>
+      <a class="active" href="./">Payout</a>
+      <a href="../flyer/">Flyer</a>
+    </nav>
+  </header>
+  <main class="wrap" style="padding-bottom:48px">
+    <p class="kicker">How the money moves</p>
+    <h1>The tip connects to the server’s money app. Not the house POS.</h1>
+    <p class="lede">Guest picks how they pay. TipCash matches that tap to what Alex has linked. Venmo and Zelle go direct. Card and Apple Pay go through Stripe and take a fee.</p>
+    <div class="path" style="margin:22px 0">
+      <div class="path-step"><b>1. Guest</b><span>Taps $12 and a method</span></div>
+      <div class="path-step"><b>2. TipCash match</b><span>Looks up Alex’s linked apps</span></div>
+      <div class="path-step"><b>3. Money app</b><span>Venmo, Zelle, or Stripe bank</span></div>
+    </div>
+    <div class="grid-2">
+      <section class="card">
+        <div class="who">No fee</div>
+        <h2>Venmo → Venmo</h2>
+        <p>Guest Venmo pays Alex’s handle. TipCash only opens the pay request. Alex gets the full $12.</p>
+        <div class="row"><span>Example</span><b>$12.00 lands</b></div>
+        <div class="row"><span>TipCash / Stripe cut</span><b class="ok">$0</b></div>
+        <p class="muted">Same idea for Zelle: guest’s bank app pays Alex’s Zelle name. No TipCash cut.</p>
+      </section>
+      <section class="card">
+        <div class="who">Fee on the tip</div>
+        <h2>Card / Apple Pay → Stripe</h2>
+        <p>Cards cannot drop into Venmo or Zelle. Stripe charges the tip, keeps ~2.9% + $0.30, then pays Alex’s bank.</p>
+        <div class="row"><span>$12 card tip</span><b>Fee $0.65</b></div>
+        <div class="row"><span>Alex nets</span><b>$11.35</b></div>
+        <p class="muted">The house check never sees this fee. It only comes out of the digital tip.</p>
+      </section>
+    </div>
+    <section class="card" style="margin-top:14px">
+      <div class="who">Owner rule</div>
+      <h2>You never touch the tip. You still own the floor.</h2>
+      <div class="row"><span>Official meal check</span><b>Stays on your POS</b></div>
+      <div class="row"><span>Allow servers</span><b>Each rail pays the named server</b></div>
+      <div class="row"><span>House jar / pool night</span><b>Every rail dumps into the jar</b></div>
+      <div class="row"><span>Not now</span><b>No payout. Member asks still collect.</b></div>
+    </section>
+    <div class="cta-row">
+      <a class="btn btn-solid btn-lg" href="../guest/">Try the guest tap</a>
+      <a class="btn btn-lg" href="../server/">Link Alex’s apps</a>
+      <a class="btn btn-lg" href="../owner/">House toggle</a>
+    </div>
+  </main>
+  <footer class="wrap footer">Prototype — no live charges. Venmo and Zelle are shown as destination rails, not as partnerships.</footer>
+</body>
+</html>
