@@ -16,23 +16,27 @@
       <a class="active" href="./">Guest</a>
       <a href="../server/">Server</a>
       <a href="../owner/">House</a>
+      <a href="../rails/">Payout</a>
       <a href="../flyer/">Flyer</a>
     </nav>
   </header>
   <main class="wrap" style="padding-bottom:48px">
-    <p class="kicker">Customer · built to make the owner look smart</p>
-    <h1>Easier payout. No wallet pass, no extra app.</h1>
-    <p class="lede">Scan. Tap $5, $8, $12 or $20. Apple Pay, Venmo or card. Alex is paid before the coat is on. You still run the official check.</p>
+    <p class="kicker">Customer · Menu Tail first</p>
+    <h1>Scan. See the Menu Tail. Tip if the house allows a QR.</h1>
+    <p class="lede">The short list of last plates stays on screen. If the GM allows it, Venmo or Zelle also show a QR. Apple Pay and card never do. House check stays on the official bill.</p>
     <div class="grid-2" style="margin-top:22px">
       <section class="card" id="flow"></section>
       <aside class="card">
         <div class="who">Why owners say yes</div>
         <h2>Happy guest, second cover.</h2>
-        <div class="row"><span>Tonight’s extra plate</span><b id="addon">$0</b></div>
+        <div class="row"><span>Menu Tail extras</span><b id="addon">$0</b></div>
         <div class="row"><span>Server takes home</span><b id="take">$12</b></div>
         <div class="row"><span>Return offer</span><b id="offer">8% / 5 days</b></div>
-        <div class="row"><span>Payout</span><b id="methodOut">Apple Pay</b></div>
-        <p class="muted">Easier TipCash payout by customers means more of the floor gets paid and more guests leave a rating instead of fumbling for cash.</p>
+        <div class="row"><span>You pay with</span><b id="methodOut">Venmo</b></div>
+        <div class="row"><span>Alex receives</span><b id="railOut">Venmo @alex-oak</b></div>
+        <div class="row"><span>Stripe fee</span><b id="feeOut">$0.00</b></div>
+        <div class="row"><span>On-screen QR</span><b id="qrOut">On · Venmo</b></div>
+        <p class="muted">Menu Tail is the limited last-look menu. House / GM decides whether Venmo and Zelle QRs appear under it. Card and Apple Pay never show a money-app QR.</p>
         <div class="who" style="margin-top:18px">Book a server</div>
         <h2>A table is convenient. Excellent service is Alex.</h2>
         <ul class="rules">
@@ -44,6 +48,7 @@
       </aside>
     </div>
   </main>
+  <script src="../rails.js"></script>
   <script src="../guest.js"></script>
 </body>
 </html>
