@@ -11,6 +11,10 @@ const DEFAULT_HOUSE = {
   payMode: "servers",
   bookServers: true,
   showAppQr: true,
+  newHireOffer: true,
+  incentiveOn: true,
+  keepSlow: 90,
+  keepBusy: 70,
 };
 
 function loadRails() {
@@ -39,6 +43,24 @@ function loadHouse() {
 
 function saveHouse(next) {
   localStorage.setItem(HOUSE_KEY, JSON.stringify(next));
+}
+
+function clampPct(n, fallback) {
+  const v = Number(n);
+  if (!Number.isFinite(v)) return fallback;
+  return Math.min(100, Math.max(0, Math.round(v)));
+}
+
+function serverKeepPct(kind, house) {
+  const h = house || loadHouse();
+  const base = kind === "busy" ? clampPct(h.keepBusy, 70) : clampPct(h.keepSlow, 90);
+  if (h.incentiveOn && kind !== "busy") return Math.min(100, base + 5);
+  return base;
+}
+
+function serverKeepAmount(tip, kind, house) {
+  const net = Math.max(0, Number(tip) || 0);
+  return Math.round((net * serverKeepPct(kind, house)) / 100 * 100) / 100;
 }
 
 function stripeFee(amount) {
