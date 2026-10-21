@@ -5,7 +5,7 @@ Guest + server product aimed at the restaurant owner.
 - Guest is happy: scan, see the Menu Tail (last plates), tap $5–$20, Apple Pay / Venmo / card. Venmo / Zelle QR on screen only if House / GM allows it. 5-day / 5–8% / $25 offer.
 - Server is happy: guest tap connects to the linked money app — Venmo and Zelle with no TipCash cut; card / Apple Pay go through Stripe (~2.9% + $0.30). Pause on pool nights, FAQ, tax export.
 - Owner wins: keep the check, pick Allow / House jar / Not now, choose whether Venmo / Zelle QRs appear under the Menu Tail, set how much servers keep on slow days vs busy weekend nights, offer TipCash to new hires for the holidays, sell a dessert tonight and a cover next week.
-- Available for work: workers create a profile (name and zip displayed; phone private for eatery alerts). Toggle available for work with TipCash payouts. Eateries create an account, see workers near them, express interest. Normal interview process still required for new hires.
+- Available for work: workers pay $0 and create a profile (name and zip displayed; phone private for eatery alerts). Eateries pay $10/month for 5 interest clicks or $19.95/month unlimited. Normal interview still required for new hires.
 
 ## Pages
 
